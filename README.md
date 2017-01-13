@@ -17,5 +17,24 @@ $ kivy kivyMain.py
 
 Simply search a strain by name.
 
+![alt tag](Images/Search Screen.jpg)
+
+Select your desired strain.
+
+![alt tag](Images/Search Results.jpg)
+
+Results will then be displayed: 
+
+![alt tag] (Images/Strain_Profile.jpg)
+
+Results will also be output to the console:
+
+![alt tag] (Images/Strain_Profile_Console.jpg)
+
+
+##To Dos
+
+Add Photos in the strain profile. 
+Do a full scale graphic design on the UI.
 
 
