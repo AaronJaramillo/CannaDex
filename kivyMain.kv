@@ -1,0 +1,161 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import TextInput kivy.uix.textinput.TextInput
+#:import ListItemButton kivy.uix.listview.ListItemButton
+#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+#:import la kivy.adapters.listadapter
+#:import factory kivy.factory
+#:import Image kivy.uix.image 
+#:import AsyncImage kivy.uix.image
+#:import Loader kivy.loader
+<SearchScreen>:
+	searchterm: str(txt_input)
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			orientation: 'vertical'
+			Label:
+				id: Banner
+				text: 'Cannadex'
+				markup: True
+				size_hint: 1,1
+			TextInput:
+				id: txt_input
+				size_hint: 1, .2
+				multiline: False
+				focus: True
+		BoxLayout:
+			orientation: 'vertical'
+			Button:
+				text: "Search"
+				size_hint: 1, .2
+				on_press: app.searched(txt_input.text)
+				on_release: app.root.current = "Resulter"
+			Label:
+				id: spacer
+				markup: True
+				size_hint: 1, 1
+<ListItemButton>:
+	on_press: app.profileOut(self.index)
+	on_release: app.root.current = "Profile"
+
+<ResultScreen>:
+	name: "Resulter"
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			text: "Cannadex"
+			markup: True
+		ListView:
+			valign: 'top'
+			halign: 'middle'
+			adapter:
+				ListAdapter(
+				cls=ListItemButton, 
+				data=[str(app.resultNames[x]) for x in range(app.resultlen)],
+				selection_mode='single',
+				)
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout:
+				size_hint: 1, .2
+				Button:
+					text: "Back"
+					size_hint: .5, 1
+					valign: 'bottom'
+					halign: 'right'
+					on_press: app.build()
+					on_release: app.root.current = "searcher"
+				Button:
+					text: "next"
+					size_hint: .5, 1
+					halign: 'justify'
+			BoxLayout:
+				size_hint: 1, 1
+				Label:
+					markup: True
+					size_hint: 1, 1
+<StrainProfile>:
+	name: "Profile"
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint: 1, 1
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint: 1, .50
+			Label:
+				size_hint: 1, .2
+				markup: True
+			Label:
+				text: str(app.strain.strain_name)
+				#text_size: self.width-20, self.height-20
+				size_hint: 1, .1
+			BoxLayout:
+				size_hint: 1, .7
+				ListView:
+					size_hint: .5, 1
+					adapter:
+						ListAdapter(
+						cls=ListItemButton, 
+						data=[str(app.strain.effects[x]) for x in range(len(app.strain.effects))],
+						selection_mode='single',
+						)
+				ListView:
+					size_hint: .5, 1
+					adapter:
+						ListAdapter(
+						cls=ListItemButton, 
+						data=[str(app.strain.levels[x]) for x in range(len(app.strain.effects))],
+						selection_mode='single',
+						)
+
+					
+
+
+		BoxLayout:
+			size_hint: 1, .05
+			Button:
+				text: str(app.strain.strain_reviews)
+				text_size: self.width-20, self.height-20
+				size_hint: 1, 1
+				on_press: app.reviewStrain()
+				on_release: app.root.current = "Reviews"
+		BoxLayout:
+			size_hint: 1, .45
+			orientation: 'vertical'
+			BoxLayout:
+				size_hint: 1, .5
+				Label:
+					markup: True
+					size_hint: .5, 1
+					text: str(app.strain.strain_nationality)
+					text_size: self.width-20, self.height-20
+				Label:
+					markup: True
+					size_hint: .5, 1
+					text: str(app.strain.strain_nationality)
+					text_size: self.width-20, self.height-20
+			BoxLayout:
+				size_hint: 1, .5
+				Label:
+					markup: True
+					size_hint: .5, 1
+					text: str(app.strain.strain_genes)
+					text_size: self.width-20, self.height-20
+				Label:
+					markup: True
+					size_hint: .5, 1
+					text: str(app.strain.strain_genes)
+					text_size: self.width-20, self.height-20
+
+<ReviewScreen>:
+	name: "Reviews"
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			Label: 
+				markup: True
+				text: 'Euphoria: '
+
+			Label:
+				markup: True
+				text: str(app.strain.euphoria)
