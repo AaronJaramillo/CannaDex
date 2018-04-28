@@ -17,19 +17,19 @@ $ kivy kivyMain.py
 
 Simply search a strain by name.
 
-![alt tag](Images/Search Screen.jpg)
+![screenshot](./Images/Search%20Screen.jpg)
 
 Select your desired strain.
 
-![alt tag](Images/Search Results.jpg)
+![](./Images/Search%20Results.jpg)
 
 Results will then be displayed: 
 
-![alt tag] (Images/Strain_Profile.jpg)
+![](./Images/Strain_Profile.jpg)
 
 Results will also be output to the console:
 
-![alt tag] (Images/Strain_Profile_Console.jpg)
+![](./Images/Strain_Profile_Console.jpg)
 
 
 ##To Dos
